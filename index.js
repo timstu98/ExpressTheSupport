@@ -31,6 +31,27 @@ app.post('/users', async (req, res) => {
   }
 })
 
+app.post('/tasks', async (req, res) => {
+  const { taskName, taskType, status, description, username, dateTime, location, duration, covidInfo } = req.body
+  try {
+    const result = await taskCollection.insertOne({
+      taskName,
+      taskType,
+      status,
+      description,
+      username,
+      dateTime,
+      location,
+      duration,
+      covidInfo
+    })
+    const newTask = await taskCollection.findOne({ _id: result.insertedId })
+    res.status(201).json(newTask)
+  } catch (e) {
+    res.status(500).send(e)
+  }
+})
+
 // start the server
 app.listen(port, async () => {
   // initialize with mongo
@@ -38,8 +59,8 @@ app.listen(port, async () => {
   const database = db.db('ExpressTheSupportDB')
   // connect with users collection on mongo
   userCollection = database.collection('Users')
-  // const dbUserCollection = await userCollection.find({}).toArray()
-  if (!userCollection) {
+  const dbUserCollection = await userCollection.find({}).toArray()
+  if (!dbUserCollection.length) {
     database.createCollection('Users', {
       validator: {
         $jsonSchema: {
@@ -65,6 +86,60 @@ app.listen(port, async () => {
             contactInfo: {
               bsonType: 'string',
               description: 'Phone number or email'
+            }
+          }
+        }
+      }
+    })
+  }
+  taskCollection = database.collection('Tasks')
+  const dbTaskCollection = await taskCollection.find({}).toArray()
+  if (!dbTaskCollection.length) {
+    database.createCollection('Tasks', {
+      validator: {
+        $jsonSchema: {
+          bsonType: 'object',
+          required: ['taskName', 'taskType', 'status', 'description', 'username', 'dateTime', 'location', 'duration', 'covidInfo'],
+          additionalProperties: false,
+          properties: {
+            _id: {
+              bsonType: 'objectId'
+            },
+            taskName: {
+              bsonType: 'string',
+              description: 'Name of task'
+            },
+            taskType: {
+              bsonType: 'string',
+              description: 'Type of task'
+            },
+            status: {
+              bsonType: 'string',
+              description: 'Status of task'
+            },
+            description: {
+              bsonType: 'string',
+              description: 'Description of task'
+            },
+            username: {
+              bsonType: 'string',
+              description: 'Username of helpee'
+            },
+            dateTime: {
+              bsonType: 'string',
+              description: 'Date of task'
+            },
+            location: {
+              bsonType: 'string',
+              description: 'Location of task'
+            },
+            duration: {
+              bsonType: 'string',
+              description: 'Duration of task'
+            },
+            covidInfo: {
+              bsonType: 'string',
+              description: 'Covid Info'
             }
           }
         }

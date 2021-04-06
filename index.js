@@ -15,6 +15,22 @@ app.use(bodyParser.urlencoded({ extended: false }))
 let userCollection
 let taskCollection
 
+const JWT_SECRET = 'SomeSecret'
+
+const authJWT = (req, res, next) => {
+  const auth = req.headers.authorization
+  if (auth) {
+    const token = auth.split(' ')[1]
+    jwt.verify(token, JWT_SECRET, (err, user) => {
+      if (err) res.sendStatus(403)
+      req.user = user
+      next()
+    })
+  } else {
+    res.sendStatus(401)
+  }
+}
+
 app.post('/users', async (req, res) => {
   const { user, password, role, contactInfo } = req.body
   try {
@@ -31,36 +47,48 @@ app.post('/users', async (req, res) => {
   }
 })
 
-app.post('/tasks', async (req, res) => {
-  const { taskName, taskType, status, description, username, dateTime, location, duration, covidInfo } = req.body
-  try {
-    const result = await taskCollection.insertOne({
-      taskName,
-      taskType,
-      status,
-      description,
-      username,
-      dateTime,
-      location,
-      duration,
-      covidInfo
-    })
-    const newTask = await taskCollection.findOne({ _id: result.insertedId })
-    res.status(201).json(newTask)
-  } catch (e) {
-    res.status(500).send(e)
+app.post('/login', async (req, res) => {
+  const { username, password } = req.body
+  const userList = await userCollection.find({}).toArray()
+  const user = userList.find(
+    (singleUser) => singleUser.username === username && singleUser.password === password
+  )
+  if (user) {
+    const accessToken = jwt.sign(
+      { username: user.username, role: user.role },
+      JWT_SECRET
+    )
+    res.send({ accessToken })
+  } else {
+    res.send('Username or password incorrect')
   }
 })
+
+const tasks = require('./routes/tasks.js')
+app.use('/tasks', tasks)
 
 // start the server
 app.listen(port, async () => {
   // initialize with mongo
   const db = await MongoClient.connect(URI)
   const database = db.db('ExpressTheSupportDB')
-  // connect with users collection on mongo
-  userCollection = database.collection('Users')
-  const dbUserCollection = await userCollection.find({}).toArray()
-  if (!dbUserCollection.length) {
+  function toArray (iterator) {
+    return new Promise((resolve, reject) => {
+      iterator.toArray((err, res) => {
+        if (err) {
+          reject(err)
+        } else {
+          resolve(res)
+        }
+      })
+    })
+  }
+  const dbCollections = await toArray(database.listCollections())
+  const arrayOfCollections = []
+  for (const object of dbCollections) {
+    arrayOfCollections.push(object.name)
+  }
+  if (!arrayOfCollections.includes('Users')) {
     database.createCollection('Users', {
       validator: {
         $jsonSchema: {
@@ -92,9 +120,7 @@ app.listen(port, async () => {
       }
     })
   }
-  taskCollection = database.collection('Tasks')
-  const dbTaskCollection = await taskCollection.find({}).toArray()
-  if (!dbTaskCollection.length) {
+  if (!arrayOfCollections.includes('Tasks')) {
     database.createCollection('Tasks', {
       validator: {
         $jsonSchema: {
@@ -146,4 +172,7 @@ app.listen(port, async () => {
       }
     })
   }
+
+  userCollection = database.collection('Users')
+  taskCollection = database.collection('Tasks')
 })

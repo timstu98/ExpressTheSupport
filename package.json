@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prod": "node server",
+    "watch": "nodemon server --ignore public/",
+    "start": "npm run watch"
   },
   "repository": {
     "type": "git",
@@ -21,7 +23,9 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
-    "mongodb": "^3.6.5"
+    "mongodb": "^3.6.5",
+    "mongoose": "^5.12.3",
+    "nodemon": "^2.0.7"
   },
   "devDependencies": {
     "eslint": "^7.23.0",

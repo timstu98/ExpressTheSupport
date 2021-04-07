@@ -4,7 +4,7 @@ const Users = mongoose.model('users')
 const express = require('express')
 const router = express.Router()
 
-router.post('/', async (req, res) => {
+router.post('/register', async (req, res) => {
   await new Users(req.body).save((err, data) => {
     if (err) {
       res.status(500).json({

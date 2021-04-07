@@ -19,6 +19,6 @@ const usersSchema = new mongoose.Schema({
     type: String,
     required: true
   }
-})
+}, { strict: true })
 
 module.exports = mongoose.model('users', usersSchema)

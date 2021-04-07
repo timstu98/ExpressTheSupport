@@ -2,16 +2,28 @@ require('dotenv').config()
 
 const express = require('express')
 const bodyParser = require('body-parser')
+// const mongoSanitize = require('express-mongo-sanitize')
 
 const app = express()
 
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
-
+// IMPORT ROUTES
 const usersRoutes = require('./routes/UsersRoutes.js')
-app.use('/users', usersRoutes)
-
 const tasksRoutes = require('./routes/TasksRoutes.js')
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
+
+// Data sanitisation against NoSQL query injection - note: must be before the routes are defined
+// app.use(mongoSanitize())
+// right now appears to be doing nothing 
+
+// ROUTES
+app.use('/users', usersRoutes)
 app.use('/tasks', tasksRoutes)
+
+// const payload = {"$something":"hello"}
+// console.log(payload)
+// const test = mongoSanitize.sanitize(payload)
+// console.log(test)
 
 module.exports = app

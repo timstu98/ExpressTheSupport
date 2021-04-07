@@ -12,7 +12,8 @@ const TasksSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    required: true
+    required: true,
+    enum: ['posted', 'in-progress', 'complete']
   },
   description: {
     type: String,
@@ -38,6 +39,6 @@ const TasksSchema = new mongoose.Schema({
     type: String,
     required: true
   }
-})
+}, { strict: true })
 
 module.exports = mongoose.model('tasks', TasksSchema)

@@ -28,8 +28,14 @@ const TasksSchema = new mongoose.Schema({
     required: true
   },
   location: {
-    type: String,
-    required: true
+    type: {
+      type: String,
+      default: 'Point'
+    },
+    coordinates: {
+      type: [Number],
+      required: true
+    }
   },
   duration: {
     type: String,
@@ -40,5 +46,7 @@ const TasksSchema = new mongoose.Schema({
     required: true
   }
 }, { strict: true })
+
+TasksSchema.index({ location: '2dsphere' })
 
 module.exports = mongoose.model('tasks', TasksSchema)

@@ -16,11 +16,6 @@ const authJWT = exports.authJWT = (req, res, next) => {
   }
 }
 
-// role: {
-//   type: String,
-//   required: true,
-//   enum: ['user', 'helper', 'admin']
-
 exports.requireHelper = (req, res, next) => {
   authJWT(req, res, function () {
     if (req.user.role !== 'helper') {
@@ -50,13 +45,3 @@ exports.requireAdmin = (req, res, next) => {
     }
   })
 }
-
-// exports.requireSpecificUser = (req, res, next) => {
-//   authJWT(req, res, function () {
-//     if (req.user.role !== 'user') {
-//       res.status(401).json('You are not logged in as a user who requires help. Users only for this page.')
-//     } else {
-//       next()
-//     }
-//   })
-// }

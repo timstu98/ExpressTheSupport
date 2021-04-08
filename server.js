@@ -5,7 +5,8 @@ require('dotenv').config({ path: '.env' })
 mongoose.connect(process.env.URI,
   {
     useUnifiedTopology: true,
-    useNewUrlParser: true
+    useNewUrlParser: true,
+    useCreateIndex: true
   })
 
 mongoose.Promise = global.Promise // tell mongoose to use ES6 promises

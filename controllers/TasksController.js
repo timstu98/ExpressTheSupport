@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const jwt_decode = require('jwt-decode')
 const Tasks = mongoose.model('tasks')
 
 exports.createNewTask = async (req, res) => {
@@ -14,11 +15,6 @@ exports.createNewTask = async (req, res) => {
       })
     }
   })
-}
-
-exports.displayTaskList = async (req, res) => {
-  const tasks = await Tasks.find()
-  res.json(tasks)
 }
 
 exports.displaySpecificTask = async (req, res) => {
@@ -78,4 +74,33 @@ exports.deleteTask = async (req, res) => {
       })
     }
   })
+}
+
+exports.displayOrderedTaskList = async (req, res) => {
+  const auth = req.headers.authorization
+  const token = auth.split(' ')[1]
+  const decoded = jwt_decode(token)
+  /* probably need to do some error catching in here,
+  although it wouldnt pass the original AUTHjwt function
+  without the accessToken so 'token' here couldn't be null
+  so we may get away with it
+  */
+  const lng = decoded.location.coordinates[0]
+  const lat = decoded.location.coordinates[1]
+
+  const maxDistanceInMeters = Infinity
+
+  const result = await Tasks
+    .find({
+      location: {
+        $near: {
+          $geometry: {
+            type: 'Point',
+            coordinates: [lng, lat]
+          },
+          $maxDistance: maxDistanceInMeters
+        }
+      }
+    }).sort('-score')
+  res.send(result)
 }

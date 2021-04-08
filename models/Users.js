@@ -18,7 +18,18 @@ const usersSchema = new mongoose.Schema({
   contactInfo: {
     type: String,
     required: true
+  },
+  location: {
+    type: {
+      type: String,
+      default: 'Point'
+    },
+    coordinates: {
+      type: [Number],
+      required: true
+    }
   }
+
 }, { strict: true })
 
 module.exports = mongoose.model('users', usersSchema)

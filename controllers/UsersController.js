@@ -22,9 +22,11 @@ exports.loginUser = async (req, res) => {
   const oneUser = await Users.findOne({ username: username, password: password }).exec()
   if (oneUser) {
     const accessToken = jwt.sign(
-      { username: oneUser.username, role: oneUser.role },
-      process.env.JWT_SECRET // If this goes wrong, add config for env at top.
+      { username: oneUser.username, role: oneUser.role, location: oneUser.location },
+      process.env.JWT_SECRET
     )
+    /* not best practice to put private information in the jwt payload
+    such as a users location as we are doing here */
     res.status(200).json({
       message: 'Congratulations, you have logged in to your account!',
       accessToken

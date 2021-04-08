@@ -4,7 +4,7 @@ const authFunctions = require('../authFunctions')
 
 const tasksController = require('../controllers/TasksController')
 
-router.get('/', authFunctions.authJWT, tasksController.displayTaskList)
+router.get('/', authFunctions.authJWT, tasksController.displayOrderedTaskList)
 
 router.post('/', authFunctions.requireUser, tasksController.createNewTask)
 

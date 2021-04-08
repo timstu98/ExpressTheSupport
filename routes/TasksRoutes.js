@@ -1,9 +1,10 @@
 const express = require('express')
 const router = express.Router()
+const authFunctions = require('../authFunctions')
 
 const tasksController = require('../controllers/TasksController')
 
-router.post('/', tasksController.createNewTask)
+router.post('/', authFunctions.authJWT, tasksController.createNewTask)
 
 router.get('/', tasksController.displayTaskList)
 

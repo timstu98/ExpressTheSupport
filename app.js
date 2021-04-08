@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 // Data sanitisation against NoSQL query injection - note: must be before the routes are defined
 // app.use(mongoSanitize())
-// right now appears to be doing nothing 
+// right now appears to be doing nothing
 
 // ROUTES
 app.use('/users', usersRoutes)

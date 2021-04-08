@@ -13,7 +13,7 @@ const TasksSchema = new mongoose.Schema({
   status: {
     type: String,
     required: true,
-    enum: ['posted', 'in-progress', 'complete']
+    enum: ['posted', 'in-progress', 'completed']
   },
   description: {
     type: String,

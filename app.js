@@ -7,8 +7,9 @@ const bodyParser = require('body-parser')
 const app = express()
 
 // IMPORT ROUTES
-const usersRoutes = require('./routes/UsersRoutes.js')
-const tasksRoutes = require('./routes/TasksRoutes.js')
+// const usersRoutes = require('./routes/UsersRoutes.js')
+// const tasksRoutes = require('./routes/TasksRoutes.js')
+const api = require('./routes/api.js')
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -18,8 +19,10 @@ app.use(bodyParser.urlencoded({ extended: true }))
 // right now appears to be doing nothing
 
 // ROUTES
-app.use('/users', usersRoutes)
-app.use('/tasks', tasksRoutes)
+
+app.use('/api/v1', api)
+// app.use('/users', usersRoutes)
+// app.use('/tasks', tasksRoutes)
 
 // const payload = {"$something":"hello"}
 // console.log(payload)

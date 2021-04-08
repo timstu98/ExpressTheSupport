@@ -4,12 +4,14 @@ const authFunctions = require('../authFunctions')
 
 const tasksController = require('../controllers/TasksController')
 
-router.post('/', authFunctions.authJWT, tasksController.createNewTask)
-
 router.get('/', authFunctions.authJWT, tasksController.displayTaskList)
+
+router.post('/', authFunctions.requireUser, tasksController.createNewTask)
 
 router.get('/:id', authFunctions.authJWT, tasksController.displaySpecificTask)
 
-router.put('/:id/update', authFunctions.authJWT, tasksController.updateStatus) // may change this to PATCH to be more RESTful
+router.delete('/:id', authFunctions.requireAdmin, tasksController.deleteTask)
+
+router.put('/:id', authFunctions.requireHelper, tasksController.updateStatus) // may change this to PATCH to be more RESTful
 
 module.exports = router

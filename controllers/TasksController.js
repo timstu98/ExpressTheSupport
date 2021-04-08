@@ -39,6 +39,7 @@ exports.displaySpecificTask = async (req, res) => {
 
 exports.updateStatus = async (req, res) => {
   const taskId = req.params.id
+  console.log('INTO TASK CONTROLLER')
   if (JSON.stringify(Object.keys(req.body)) !== JSON.stringify(['status'])) {
     console.log('if statement checking json keys triggered')
     res.status(403).json({ message: 'Please pass only a status update in request body.' })
@@ -64,4 +65,17 @@ exports.updateStatus = async (req, res) => {
       }
     })
   }
+}
+
+exports.deleteTask = async (req, res) => {
+  const taskId = req.params.id
+  await Tasks.findByIdAndDelete({ _id: taskId }, (err, data) => {
+    if (err) {
+      res.status(500).json({ message: 'Find by id and delete failed. Could be because your id does not match an entry. Please retry.' })
+    } else {
+      res.status(204).json({
+        message: 'Deleted Task'
+      })
+    }
+  })
 }

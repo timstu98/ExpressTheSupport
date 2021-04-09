@@ -18,8 +18,4 @@ app.use(mongoSanitize())
 // ROUTES
 app.use('/api/v1', api)
 
-// app.use('/test', (req,res) => {
-
-// }
-
 module.exports = app

@@ -12,6 +12,6 @@ router.get('/:id', authFunctions.authJWT, tasksController.displaySpecificTask)
 
 router.delete('/:id', authFunctions.requireAdmin, tasksController.deleteTask)
 
-router.put('/:id', authFunctions.requireHelper, tasksController.updateStatus) // may change this to PATCH to be more RESTful
+router.put('/:id', authFunctions.requireHelper, tasksController.updateStatus)
 
 module.exports = router

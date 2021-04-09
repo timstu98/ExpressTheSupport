@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
 const jwt_decode = require('jwt-decode')
-// const Tasks = mongoose.model('tasks')
 
 const Tasks = require('../models/TasksModel')
 
@@ -38,16 +37,12 @@ exports.displaySpecificTask = async (req, res) => {
 exports.updateStatus = async (req, res) => {
   const taskId = req.params.id
   if (JSON.stringify(Object.keys(req.body)) !== JSON.stringify(['status'])) {
-    // console.log('if statement checking json keys triggered')
     res.status(403).json({ message: 'Please pass only a status update in request body.' })
   } else {
     await Tasks.findByIdAndUpdate({ _id: taskId }, { $set: req.body }, { new: true, runValidators: true }, (err, data) => {
       if (err) {
         res.status(500).json({ message: 'Find by id and update failed. Could be because the status is invalid. Please retry.' })
       }
-      // if (req.body.status === data.status) {
-      //   res.status(403).json({ message: 'No change of status as status entered is same as before.'})
-      // }
     })
     await Tasks.findById({ _id: taskId }, (err, data) => {
       if (err) {
@@ -81,11 +76,7 @@ exports.displayOrderedTaskList = async (req, res) => {
   const auth = req.headers.authorization
   const token = auth.split(' ')[1]
   const decoded = jwt_decode(token)
-  /* probably need to do some error catching in here,
-  although it wouldnt pass the original AUTHjwt function
-  without the accessToken so 'token' here couldn't be null
-  so we may get away with it
-  */
+  
   const lng = decoded.location.coordinates[0]
   const lat = decoded.location.coordinates[1]
 

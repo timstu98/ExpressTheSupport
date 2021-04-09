@@ -35,7 +35,6 @@ exports.displaySpecificTask = async (req, res) => {
 
 exports.updateStatus = async (req, res) => {
   const taskId = req.params.id
-  console.log('INTO TASK CONTROLLER')
   if (JSON.stringify(Object.keys(req.body)) !== JSON.stringify(['status'])) {
     console.log('if statement checking json keys triggered')
     res.status(403).json({ message: 'Please pass only a status update in request body.' })

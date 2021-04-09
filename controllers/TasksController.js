@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const jwt_decode = require('jwt-decode')
 // const Tasks = mongoose.model('tasks')
 
-const Tasks = require('../models/Tasks.js')
+const Tasks = require('../models/TasksModel')
 
 exports.createNewTask = async (req, res) => {
   await new Tasks(req.body).save((err, data) => {

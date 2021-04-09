@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 // const Users = mongoose.model('users')
-const Users = require('../models/Users.js')
+const Users = require('../models/UsersModel')
 const jwt = require('jsonwebtoken')
 
 exports.registerNewUser = async (req, res) => {

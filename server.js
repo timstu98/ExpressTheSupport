@@ -14,8 +14,8 @@ mongoose.connection.on('error', (err) => {
   console.error(`database connection error: ${err.message}`)
 })
 
-require('./models/Users')
-require('./models/Tasks')
+require('./models/UsersModel')
+require('./models/TasksModel')
 
 
 const app = require('./app')

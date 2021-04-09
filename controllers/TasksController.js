@@ -1,6 +1,8 @@
 const mongoose = require('mongoose')
 const jwt_decode = require('jwt-decode')
-const Tasks = mongoose.model('tasks')
+// const Tasks = mongoose.model('tasks')
+
+const Tasks = require('../models/Tasks.js')
 
 exports.createNewTask = async (req, res) => {
   await new Tasks(req.body).save((err, data) => {
@@ -36,7 +38,7 @@ exports.displaySpecificTask = async (req, res) => {
 exports.updateStatus = async (req, res) => {
   const taskId = req.params.id
   if (JSON.stringify(Object.keys(req.body)) !== JSON.stringify(['status'])) {
-    console.log('if statement checking json keys triggered')
+    // console.log('if statement checking json keys triggered')
     res.status(403).json({ message: 'Please pass only a status update in request body.' })
   } else {
     await Tasks.findByIdAndUpdate({ _id: taskId }, { $set: req.body }, { new: true, runValidators: true }, (err, data) => {

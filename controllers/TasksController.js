@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
-const Tasks = mongoose.model('tasks')
+
+const Tasks = require('../models/Tasks.js')
 
 exports.createNewTask = async (req, res) => {
   await new Tasks(req.body).save((err, data) => {
@@ -9,7 +10,7 @@ exports.createNewTask = async (req, res) => {
       })
     } else {
       res.status(200).json({
-        message: 'Task Created',
+        message: 'Task Created'p,
         data
       })
     }
@@ -18,7 +19,7 @@ exports.createNewTask = async (req, res) => {
 
 exports.displayTaskList = async (req, res) => {
   const tasks = await Tasks.find()
-  res.json(tasks)
+  res.status(200).json(tasks)
 }
 
 exports.displaySpecificTask = async (req, res) => {
@@ -39,9 +40,9 @@ exports.displaySpecificTask = async (req, res) => {
 
 exports.updateStatus = async (req, res) => {
   const taskId = req.params.id
-  console.log('INTO TASK CONTROLLER')
+  // console.log('INTO TASK CONTROLLER')
   if (JSON.stringify(Object.keys(req.body)) !== JSON.stringify(['status'])) {
-    console.log('if statement checking json keys triggered')
+    // console.log('if statement checking json keys triggered')
     res.status(403).json({ message: 'Please pass only a status update in request body.' })
   } else {
     await Tasks.findByIdAndUpdate({ _id: taskId }, { $set: req.body }, { new: true, runValidators: true }, (err, data) => {

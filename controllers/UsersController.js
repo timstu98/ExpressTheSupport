@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
-const Users = mongoose.model('users')
+// const Users = mongoose.model('users')
+const Users = require('../models/Users.js')
 const jwt = require('jsonwebtoken')
 
 exports.registerNewUser = async (req, res) => {
@@ -9,6 +10,7 @@ exports.registerNewUser = async (req, res) => {
         message: 'Something went wrong, please try again later.'
       })
     } else {
+      console.log(data)
       res.status(200).json({
         message: 'Congratulations, you created an account!',
         data

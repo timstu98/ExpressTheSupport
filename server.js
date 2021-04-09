@@ -16,8 +16,11 @@ mongoose.connection.on('error', (err) => {
 require('./models/Users')
 require('./models/Tasks')
 
+
 const app = require('./app')
 
 const server = app.listen(3000, () => {
   console.log(`Express running on PORT ${server.address().port}`)
 })
+
+module.exports=app

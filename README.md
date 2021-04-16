@@ -4,23 +4,23 @@ Four day back-end mini-project for the Bright Network Technology Academy Full-st
 
 <img width="770" alt="Logo" src="www.np.com">
 
-### Project Aim
+#### Project Aim
 Issue to be addressed: vulnerable people unable to carry out necessary tasks on their own.  
 Proposed solution: connect vulnerable individuals with volunteers that can carry out tasks on their behalf.
 
-### Key Features
+#### Key Features
 
 * Authentication
 * Integration testing
 * Validation
 * MVC design patterns
 
-### Functionalities
+#### Functionalities
 
 ADD IMAGE FROM SLIDESHOW
 
 
-## Setup Locally
+### Setup Locally
 
 1. First, [clone the repo](https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/cloning-a-repository) to your local machine.
 
@@ -41,13 +41,13 @@ ADD IMAGE FROM SLIDESHOW
    npm start
 ```
 
-## Technologies
-#### Stack:
+### Technologies
+##### Stack:
 * MongoDB (+ Mongoose)
 * Express
 * Node.js
 
-#### Other technologies used:
+##### Other technologies used:
 * Postman
 * JsonWebToken
 * Nodemon
@@ -57,7 +57,7 @@ ADD IMAGE FROM SLIDESHOW
 * Jest (+supertest)
 
 
-## Contributors
+### Contributors
 * [Ed Dixon](https://github.com/EdDixon95)
 * [Joseph Simmons](https://github.com/JosephSimmons)
 * [Munisha Boora](https://github.com/munishaboora)

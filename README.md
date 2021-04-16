@@ -15,7 +15,7 @@ Mongo-sanitise
 Jest (+supertest)  
 
 
-Contributors:
+**Contributors:**  
 Ed Dixon  
 Joseph Simmons  
 Munisha Boora  

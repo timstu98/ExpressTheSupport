@@ -2,7 +2,7 @@
 
 Four day back-end mini-project for the Bright Network Technology Academy Full-stack Bootcamp.
 
-<img width="770" alt="Logo" src="www.np.com">
+<img width="770" alt="Logo" src="https://github.com/timstu98/ExpressTheSupport/blob/main/README_images/ExpressSupport%20logo.png">
 
 #### Project Aim
 Issue to be addressed: vulnerable people unable to carry out necessary tasks on their own.  
@@ -16,8 +16,7 @@ Proposed solution: connect vulnerable individuals with volunteers that can carry
 * MVC design patterns
 
 #### Functionalities
-
-ADD IMAGE FROM SLIDESHOW
+<img width="770" alt="Logo" src="https://github.com/timstu98/ExpressTheSupport/blob/main/README_images/Screenshot%202021-04-16%20at%2017.10.16.png">
 
 
 ### Setup Locally

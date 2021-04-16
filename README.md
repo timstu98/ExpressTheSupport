@@ -1,8 +1,10 @@
 # Express the Support
 
-Our
+Four day back-end mini-project for the Bright Network Technology Academy Full-stack Bootcamp.
 
-The brief:
+## Project Aim
+Issue to be addressed: vulnerable people unable to carry out necessary tasks on their own.  
+Proposed solution: connect vulnerable individuals with volunteers that can carry out tasks on their behalf.
 
 **Tech used:**
 Postman

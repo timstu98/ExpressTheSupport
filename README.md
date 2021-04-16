@@ -18,7 +18,7 @@ Jest (+supertest)
 
 
 ## Contributors
-* [Ed Dixon]()
-* [Joseph Simmons]()
-* [Munisha Boora]()
-* [Tim Stuart]()
+* [Ed Dixon](https://github.com/EdDixon95)
+* [Joseph Simmons](https://github.com/JosephSimmons)
+* [Munisha Boora](https://github.com/munishaboora)
+* [Tim Stuart](https://github.com/timstu98)

@@ -10,12 +10,11 @@ Proposed solution: connect vulnerable individuals with volunteers that can carry
 
 ## Features
 ADD IMAGE FROM SLIDESHOW
-* Log-in as user, helper or admin.
-* 
+
 
 ## Setup Locally
 
-1. [First, clone the repo to your local machine.](https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/cloning-a-repository)
+1. First, [clone the repo](https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/cloning-a-repository) to your local machine.
 
 2. Download all necessary dependencies:
  ```sh
@@ -35,15 +34,17 @@ ADD IMAGE FROM SLIDESHOW
 ```
 
 ## Tech used
-Stack sublist
+#### Stack:
+* MongoDB (+ Mongoose)
+* Express
+* Node.js
+
+#### Other tech used:
 * Postman
-* MongoDB Atlas
 * JsonWebToken
 * Nodemon
-* Mongoose
 * Dotenv
 * Body-parser
-* Express
 * Mongo-sanitise
 * Jest (+supertest)
 

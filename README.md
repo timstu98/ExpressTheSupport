@@ -2,7 +2,7 @@
 
 The brief:  
 
-**Tech used:**
+**Tech used:**  
 Postman  
 MongoDB Atlas  
 JsonWebToken  
@@ -15,4 +15,8 @@ Mongo-sanitise
 Jest (+supertest)  
 
 
-Authors:  
+Contributors:
+Ed Dixon  
+Joseph Simmons  
+Munisha Boora  
+Tim Stuart  

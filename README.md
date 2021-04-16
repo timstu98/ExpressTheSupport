@@ -2,7 +2,7 @@
 
 Four day back-end mini-project for the Bright Network Technology Academy Full-stack Bootcamp.
 
-<img width="770" alt="Logo" src="https://github.com/timstu98/ExpressTheSupport/blob/main/README_images/ExpressSupport%20logo.png">
+<img width="300" alt="Logo" src="https://github.com/timstu98/ExpressTheSupport/blob/main/README_images/ExpressSupport%20logo.png">
 
 #### Project Aim
 Issue to be addressed: vulnerable people unable to carry out necessary tasks on their own.  

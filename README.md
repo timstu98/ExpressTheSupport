@@ -2,13 +2,21 @@
 
 Four day back-end mini-project for the Bright Network Technology Academy Full-stack Bootcamp.
 
-<img width="770" alt="Logo" src="https://user-images.githubusercontent.com/68763259/113367236-6a4e0a00-9353-11eb-9884-10c337f224e2.png">
+<img width="770" alt="Logo" src="www.np.com">
 
-## Project Aim
+### Project Aim
 Issue to be addressed: vulnerable people unable to carry out necessary tasks on their own.  
 Proposed solution: connect vulnerable individuals with volunteers that can carry out tasks on their behalf.
 
-## Features
+### Key Features
+
+* Authentication
+* Integration testing
+* Validation
+* MVC design patterns
+
+### Functionalities
+
 ADD IMAGE FROM SLIDESHOW
 
 
@@ -33,13 +41,13 @@ ADD IMAGE FROM SLIDESHOW
    npm start
 ```
 
-## Tech used
+## Technologies
 #### Stack:
 * MongoDB (+ Mongoose)
 * Express
 * Node.js
 
-#### Other tech used:
+#### Other technologies used:
 * Postman
 * JsonWebToken
 * Nodemon

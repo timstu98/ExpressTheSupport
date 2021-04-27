@@ -10,7 +10,7 @@ Proposed solution: connect vulnerable individuals with volunteers that can carry
 
 #### Key Features
 
-* Authentication
+* Authentication and authorisation
 * Integration testing
 * Validation
 * MVC design patterns
